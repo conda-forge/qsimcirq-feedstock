@@ -1,7 +1,7 @@
-From 34cab62e7d4b76a7282fe79993c3ce74354cf40d Mon Sep 17 00:00:00 2001
+From 12ef16198c3788df61d0de43680eb7c56ddce1d9 Mon Sep 17 00:00:00 2001
 From: Bas Nijholt <bas@nijho.lt>
 Date: Tue, 5 Dec 2023 13:14:23 -0800
-Subject: [PATCH] Set PYTHON_INCLUDE_DIR in setup.py
+Subject: [PATCH 4/6] Set PYTHON_INCLUDE_DIR in setup.py
 
 Prevents
 ```

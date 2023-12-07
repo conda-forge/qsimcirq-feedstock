@@ -1,7 +1,7 @@
-From d0fa7a99e5111ccf072e6ffbff149db72d2ba06d Mon Sep 17 00:00:00 2001
+From 8ded22066f402950cf4379850e6eaa157b376fbd Mon Sep 17 00:00:00 2001
 From: Bas Nijholt <bas@nijho.lt>
 Date: Mon, 4 Dec 2023 11:41:19 -0800
-Subject: [PATCH] Remove PUBLIC from target_link_libraries with
+Subject: [PATCH 2/6] Remove PUBLIC from target_link_libraries with
  OpenMP::OpenMP_CXX
 
 Otherwise this could lead to the following problem when building with CUDA:
