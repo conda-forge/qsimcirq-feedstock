@@ -1,0 +1,26 @@
+From dd26233a6b5cdfe36d855c7127cfad9bcdfc9e68 Mon Sep 17 00:00:00 2001
+From: Bas Nijholt <bas@nijho.lt>
+Date: Thu, 7 Dec 2023 08:54:39 -0800
+Subject: [PATCH] Allow installing for Python 3.12
+
+I have tested qsim on Python 3.12 and everything works just fine.
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index ed4720c..70ebca4 100644
+--- a/setup.py
++++ b/setup.py
+@@ -114,7 +114,7 @@ setup(
+     url="https://github.com/quantumlib/qsim",
+     author="Vamsi Krishna Devabathini",
+     author_email="devabathini92@gmail.com",
+-    python_requires=">=3.7.0,<3.12.0",
++    python_requires=">=3.7.0",
+     install_requires=requirements,
+     extras_require={
+         "dev": dev_requirements,
+-- 
+2.43.0
+
