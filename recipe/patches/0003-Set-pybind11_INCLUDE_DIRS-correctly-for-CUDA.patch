@@ -1,0 +1,39 @@
+From 19a59821e9d8802a7977b931e4de04d1aaab5035 Mon Sep 17 00:00:00 2001
+From: Bas Nijholt <bas@nijho.lt>
+Date: Wed, 29 Nov 2023 15:10:09 -0500
+Subject: [PATCH 3/3] Set pybind11_INCLUDE_DIRS correctly for CUDA
+
+---
+ pybind_interface/cuda/CMakeLists.txt | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/pybind_interface/cuda/CMakeLists.txt b/pybind_interface/cuda/CMakeLists.txt
+index 9bd369a..e8c0e70 100644
+--- a/pybind_interface/cuda/CMakeLists.txt
++++ b/pybind_interface/cuda/CMakeLists.txt
+@@ -18,13 +18,18 @@ INCLUDE(../GetPybind11.cmake)
+ find_package(PythonLibs 3.7 REQUIRED)
+ find_package(CUDA REQUIRED)
+ 
+-include_directories(${PYTHON_INCLUDE_DIRS} ${pybind11_SOURCE_DIR}/include)
++include_directories(${PYTHON_INCLUDE_DIRS})
++if(pybind11_FOUND)
++    include_directories(${pybind11_INCLUDE_DIRS})
++else()  # means pybind11 has been fetched in GetPybind11.cmake
++    include_directories(${pybind11_SOURCE_DIR}/include)
++endif()
+ 
+ cuda_add_library(qsim_cuda MODULE pybind_main_cuda.cpp)
+ set_target_properties(qsim_cuda PROPERTIES
+-       CUDA_ARCHITECTURES "all"
+-       PREFIX "${PYTHON_MODULE_PREFIX}"
+-       SUFFIX "${PYTHON_MODULE_EXTENSION}"
++    CUDA_ARCHITECTURES "all"
++    PREFIX "${PYTHON_MODULE_PREFIX}"
++    SUFFIX "${PYTHON_MODULE_EXTENSION}"
+ )
+ set_source_files_properties(pybind_main_cuda.cpp PROPERTIES LANGUAGE CUDA)
+ 
+-- 
+2.43.0
+

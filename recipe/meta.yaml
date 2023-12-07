@@ -8,22 +8,33 @@ package:
 source:
   url: https://github.com/quantumlib/qsim/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 81101fe9e6356e54125f703956e787aa366717c1e6e77aea794879b53c84ff60
+  patches:
+    - recipe/patches/0001-Fix-no-instance-of-constructor-qsim-StateSpaceCUDA-F.patch
+    - recipe/patches/0002-Remove-PUBLIC-from-target_link_libraries-with-OpenMP.patch
+    - recipe/patches/0003-Set-pybind11_INCLUDE_DIRS-correctly-for-CUDA.patch
+    - recipe/patches/0004-Set-PYTHON_INCLUDE_DIR-in-setup.py.patch
+    - recipe/patches/0005-Allow-installing-for-Python-3.12.patch
+    - recipe/patches/0006-Set-CUDA_ARCHITECTURES-all-cmake-policy-CMP0104.patch
 
 build:
   skip: true  # [win]
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
+  script_env:
+    - CUQUANTUM_ROOT=$PREFIX  # [cuda_compiler_version != "None"]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
     - pybind11-abi
     - llvm-openmp  # [osx]
     - libgomp      # [linux]
     - openmpi
     - cmake >=3.27
     - make
+    - cuquantum-python  # [cuda_compiler_version != "None"]
   host:
     - python
     - pybind11
@@ -38,6 +49,7 @@ requirements:
     - pybind11
     - typing_extensions
     - {{ pin_compatible('numpy') }}
+    - cuquantum-python  # [cuda_compiler_version != "None"]
 
 test:
   imports:

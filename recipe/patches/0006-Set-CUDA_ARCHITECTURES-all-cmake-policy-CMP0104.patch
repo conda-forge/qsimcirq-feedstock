@@ -1,0 +1,80 @@
+From dff3a3726270a90c3654e53c7f623f4ae63e9703 Mon Sep 17 00:00:00 2001
+From: Bas Nijholt <bas@nijho.lt>
+Date: Wed, 29 Nov 2023 15:07:28 -0500
+Subject: [PATCH 2/3] Set CUDA_ARCHITECTURES "all" (cmake-policy CMP0104)
+
+---
+ pybind_interface/cuda/CMakeLists.txt       |  3 ++-
+ pybind_interface/custatevec/CMakeLists.txt |  4 ++--
+ pybind_interface/decide/CMakeLists.txt     | 11 ++++++-----
+ 3 files changed, 10 insertions(+), 8 deletions(-)
+
+diff --git a/pybind_interface/cuda/CMakeLists.txt b/pybind_interface/cuda/CMakeLists.txt
+index 89df194..9bd369a 100644
+--- a/pybind_interface/cuda/CMakeLists.txt
++++ b/pybind_interface/cuda/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 3.11)
++cmake_minimum_required(VERSION 3.18)
+ project(qsim LANGUAGES CXX CUDA)
+ 
+ if(WIN32)
+@@ -22,6 +22,7 @@ include_directories(${PYTHON_INCLUDE_DIRS} ${pybind11_SOURCE_DIR}/include)
+ 
+ cuda_add_library(qsim_cuda MODULE pybind_main_cuda.cpp)
+ set_target_properties(qsim_cuda PROPERTIES
++       CUDA_ARCHITECTURES "all"
+        PREFIX "${PYTHON_MODULE_PREFIX}"
+        SUFFIX "${PYTHON_MODULE_EXTENSION}"
+ )
+diff --git a/pybind_interface/custatevec/CMakeLists.txt b/pybind_interface/custatevec/CMakeLists.txt
+index 77fe663..456f5bd 100644
+--- a/pybind_interface/custatevec/CMakeLists.txt
++++ b/pybind_interface/custatevec/CMakeLists.txt
+@@ -40,8 +40,8 @@ cuda_add_library(qsim_custatevec MODULE pybind_main_custatevec.cpp)
+ target_link_libraries(qsim_custatevec -lcustatevec -lcublas)
+ 
+ set_target_properties(qsim_custatevec PROPERTIES
+-       PREFIX "${PYTHON_MODULE_PREFIX}"
+-       SUFFIX "${PYTHON_MODULE_EXTENSION}"
++    PREFIX "${PYTHON_MODULE_PREFIX}"
++    SUFFIX "${PYTHON_MODULE_EXTENSION}"
+ )
+ set_source_files_properties(pybind_main_custatevec.cpp PROPERTIES LANGUAGE CUDA)
+ 
+diff --git a/pybind_interface/decide/CMakeLists.txt b/pybind_interface/decide/CMakeLists.txt
+index 15d5170..0f92919 100644
+--- a/pybind_interface/decide/CMakeLists.txt
++++ b/pybind_interface/decide/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 3.11)
++cmake_minimum_required(VERSION 3.18)
+ 
+ if(WIN32)
+     set(CMAKE_CXX_FLAGS "/O2 /openmp")
+@@ -26,8 +26,9 @@ if(has_nvcc)
+     find_package(Python3 3.7 REQUIRED COMPONENTS Interpreter Development)
+     include_directories(${PYTHON_INCLUDE_DIRS} ${pybind11_SOURCE_DIR}/include)
+     set_target_properties(qsim_decide PROPERTIES
+-            PREFIX "${PYTHON_MODULE_PREFIX}"
+-            SUFFIX "${PYTHON_MODULE_EXTENSION}"
++        CUDA_ARCHITECTURES "all"
++        PREFIX "${PYTHON_MODULE_PREFIX}"
++        SUFFIX "${PYTHON_MODULE_EXTENSION}"
+     )
+     set_source_files_properties(decide.cpp PROPERTIES LANGUAGE CUDA)
+ elseif(has_hipcc)
+@@ -38,8 +39,8 @@ elseif(has_hipcc)
+     find_package(Python3 3.7 REQUIRED COMPONENTS Interpreter Development)
+     include_directories(${PYTHON_INCLUDE_DIRS} ${pybind11_SOURCE_DIR}/include)
+     set_target_properties(qsim_decide PROPERTIES
+-            PREFIX "${PYTHON_MODULE_PREFIX}"
+-            SUFFIX "${PYTHON_MODULE_EXTENSION}"
++        PREFIX "${PYTHON_MODULE_PREFIX}"
++        SUFFIX "${PYTHON_MODULE_EXTENSION}"
+     )
+ else()
+     pybind11_add_module(qsim_decide decide.cpp)
+-- 
+2.43.0
+
