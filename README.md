@@ -55,6 +55,13 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>linux_64_c_compiler_version10cuda_compilernvcccuda_compiler_version11.2cxx_compiler_version10numpy1.26python3.12.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=20949&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/qsimcirq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version10cuda_compilernvcccuda_compiler_version11.2cxx_compiler_version10numpy1.26python3.12.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>linux_64_c_compiler_version12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12numpy1.22python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=20949&branchName=main">
@@ -83,10 +90,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_numpy1.26python3.12.____cpython</td>
+              <td>linux_64_c_compiler_version12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12numpy1.26python3.12.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=20949&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/qsimcirq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_numpy1.26python3.12.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/qsimcirq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version12numpy1.26python3.12.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
