@@ -35,6 +35,7 @@ requirements:
     - cmake >=3.27
     - make
     - cuquantum-python  # [cuda_compiler_version != "None"]
+    - custatevec  # [cuda_compiler_version != "None"]
   host:
     - python
     - pybind11
@@ -50,6 +51,7 @@ requirements:
     - typing_extensions
     - {{ pin_compatible('numpy') }}
     - cuquantum-python  # [cuda_compiler_version != "None"]
+    - custatevec  # [cuda_compiler_version != "None"]
 
 test:
   imports:
