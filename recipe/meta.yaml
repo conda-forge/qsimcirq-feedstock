@@ -8,10 +8,12 @@ package:
 source:
   url: https://github.com/quantumlib/qsim/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 81101fe9e6356e54125f703956e787aa366717c1e6e77aea794879b53c84ff60
+  patches:
+    - patches/0005-Allow-installing-for-Python-3.12.patch
 
 build:
   skip: true  # [win]
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
 
 requirements:
