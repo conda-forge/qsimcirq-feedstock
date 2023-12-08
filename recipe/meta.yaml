@@ -22,7 +22,7 @@ build:
   # For some reason Python 3.12 fails to resolve and gives:
   # nothing provides _python_rc needed by python-3.12.0rc3-rc3_hab00c5b_1_cpython
   skip: true  # [cuda_compiler_version != "None" and py==312]
-  number: 3
+  number: 4
   string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
   string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                 # [cuda_compiler_version == "None"]
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
@@ -47,8 +47,10 @@ requirements:
     - wheel
     - pip
     - numpy
-    - cuquantum-python  # [cuda_compiler_version != "None"]
-    - custatevec  # [cuda_compiler_version != "None"]
+    - cuquantum-python   # [cuda_compiler_version != "None"]
+    - custatevec         # [cuda_compiler_version != "None"]
+    - libcublas-dev      # [(cuda_compiler_version or "").startswith("12")]
+
   run:
     - python
     - absl-py
@@ -57,9 +59,8 @@ requirements:
     - typing_extensions
     - {{ pin_compatible('numpy') }}
     - cuquantum-python  # [cuda_compiler_version != "None"]
-    - custatevec  # [cuda_compiler_version != "None"]
-    # avoid that people without GPUs needlessly download ~0.5-1GB of CUDA packages
-    - __cuda  # [cuda_compiler_version != "None"]
+    - custatevec        # [cuda_compiler_version != "None"]
+    - __cuda            # [cuda_compiler_version != "None"]
 
 test:
   imports:
