@@ -8,7 +8,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         echo "set(OpenMP_INCLUDE_DIR \"${OPENMP_INCLUDE_DIR}\")"
         echo "include_directories(\${OpenMP_INCLUDE_DIR})"
         cat CMakeLists.txt
-    } > CMakeLists.txt
+    } > tmp-CMakeLists.txt
+    mv tmp-CMakeLists.txt CMakeLists.txt
 fi
 
 python -m pip install . -vvv --no-deps --no-build-isolation
