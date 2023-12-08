@@ -19,6 +19,9 @@ source:
 
 build:
   skip: true  # [win]
+  # For some reason Python 3.12 fails to resolve and gives:
+  # nothing provides _python_rc needed by python-3.12.0rc3-rc3_hab00c5b_1_cpython
+  skip: true  # [cuda_compiler_version != "None" and py==312]
   number: 1
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
