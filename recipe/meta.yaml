@@ -3,10 +3,6 @@
 
 {% set build = 2 %}
 
-{% if cuda_compiler_version != "None" %}
-{% set build = build + 200 %}
-{% endif %}
-
 package:
   name: qsimcirq-recipe
   version: {{ version }}
@@ -42,7 +38,7 @@ outputs:
       script_env:
         - CUQUANTUM_ROOT=$PREFIX  # [cuda_compiler_version != "None"]
 
-    script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
+    script: python -m pip install . -vvv --no-deps --no-build-isolation
 
     requirements:
       build:
