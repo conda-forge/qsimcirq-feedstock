@@ -1,0 +1,30 @@
+From ef0f8b996af41178689676f4d6b262d9c3c9786c Mon Sep 17 00:00:00 2001
+From: Bas Nijholt <bas@nijho.lt>
+Date: Wed, 29 Nov 2023 15:10:09 -0500
+Subject: [PATCH 3/6] Set pybind11_INCLUDE_DIRS correctly for CUDA
+
+---
+ pybind_interface/cuda/CMakeLists.txt | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/pybind_interface/cuda/CMakeLists.txt b/pybind_interface/cuda/CMakeLists.txt
+index e5644d4..d1d4b3f 100644
+--- a/pybind_interface/cuda/CMakeLists.txt
++++ b/pybind_interface/cuda/CMakeLists.txt
+@@ -18,7 +18,12 @@ INCLUDE(../GetPybind11.cmake)
+ find_package(PythonLibs 3.7 REQUIRED)
+ find_package(CUDA REQUIRED)
+ 
+-include_directories(${PYTHON_INCLUDE_DIRS} ${pybind11_SOURCE_DIR}/include)
++include_directories(${PYTHON_INCLUDE_DIRS})
++if(pybind11_FOUND)
++    include_directories(${pybind11_INCLUDE_DIRS})
++else()  # means pybind11 has been fetched in GetPybind11.cmake
++    include_directories(${pybind11_SOURCE_DIR}/include)
++endif()
+ 
+ cuda_add_library(qsim_cuda MODULE pybind_main_cuda.cpp)
+ set_target_properties(qsim_cuda PROPERTIES
+-- 
+2.43.0
+
