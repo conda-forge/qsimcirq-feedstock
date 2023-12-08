@@ -47,8 +47,10 @@ requirements:
     - wheel
     - pip
     - numpy
-    - cuquantum-python  # [cuda_compiler_version != "None"]
-    - custatevec  # [cuda_compiler_version != "None"]
+    - cuquantum-python   # [cuda_compiler_version != "None"]
+    - custatevec         # [cuda_compiler_version != "None"]
+    - libcublas-dev      # [(cuda_compiler_version or "").startswith("12")]
+
   run:
     - python
     - absl-py
@@ -57,9 +59,8 @@ requirements:
     - typing_extensions
     - {{ pin_compatible('numpy') }}
     - cuquantum-python  # [cuda_compiler_version != "None"]
-    - custatevec  # [cuda_compiler_version != "None"]
-    # avoid that people without GPUs needlessly download ~0.5-1GB of CUDA packages
-    - __cuda  # [cuda_compiler_version != "None"]
+    - custatevec        # [cuda_compiler_version != "None"]
+    - __cuda            # [cuda_compiler_version != "None"]
 
 test:
   imports:
