@@ -67,6 +67,8 @@ outputs:
         - {{ pin_compatible('numpy') }}
         - cuquantum-python  # [cuda_compiler_version != "None"]
         - custatevec  # [cuda_compiler_version != "None"]
+        # avoid that people without GPUs needlessly download ~0.5-1GB of CUDA packages
+        - __cuda  # [cuda_compiler_version != "None"]
 
     test:
       imports:
