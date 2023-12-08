@@ -82,7 +82,7 @@ outputs:
       source_files:
         - qsimcirq_tests
       commands:
-        # With CUDA `pip cehck` fails with:
+        # With CUDA `pip check` fails with:
         # cuquantum-python-cu11 23.10.0 requires custatevec-cu11, which is not installed.
         - pip check  # [cuda_compiler_version == "None"]
         - cd qsimcirq_tests && pytest -vvv .
