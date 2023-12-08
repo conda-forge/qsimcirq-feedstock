@@ -6,6 +6,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     OPENMP_INCLUDE_DIR=$(echo ${BUILD_PREFIX}/lib/clang/*/include)
     {
         echo "set(OpenMP_INCLUDE_DIR \"${OPENMP_INCLUDE_DIR}\")"
+        echo "set(OpenMP_CXX_FLAGS \"-fopenmp=libomp\")"
+        echo "set(OpenMP_CXX_LIB_NAMES \"omp\")"
         echo "include_directories(\${OpenMP_INCLUDE_DIR})"
         cat CMakeLists.txt
     } > tmp-CMakeLists.txt
