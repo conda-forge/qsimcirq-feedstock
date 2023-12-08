@@ -25,7 +25,6 @@ build:
   number: 4
   string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
   string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                 # [cuda_compiler_version == "None"]
-  script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     - CUQUANTUM_ROOT=$PREFIX  # [cuda_compiler_version != "None"]
 
