@@ -1,6 +1,12 @@
 {% set name = "qsimcirq" %}
 {% set version = "0.19.0" %}
 
+{% set build = 2 %}
+
+{% if cuda_compiler_version != "None" %}
+{% set build = build + 200 %}
+{% endif %}
+
 package:
   name: qsimcirq-recipe
   version: {{ version }}
@@ -18,7 +24,7 @@ source:
     - patches/0007-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch
 
 build:
-  number: 2
+  number: {{ build }}
   skip: true  # [win]
   # For some reason Python 3.12 fails to resolve and gives:
   # nothing provides _python_rc needed by python-3.12.0rc3-rc3_hab00c5b_1_cpython
