@@ -37,6 +37,7 @@ requirements:
     - wheel
     - pip
     - numpy
+    - llvm-openmp  # [osx]
   run:
     - python
     - absl-py
