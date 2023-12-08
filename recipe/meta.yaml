@@ -15,6 +15,7 @@ source:
     - patches/0004-Set-PYTHON_INCLUDE_DIR-in-setup.py.patch
     - patches/0005-Allow-installing-for-Python-3.12.patch
     - patches/0006-Set-CUDA_ARCHITECTURES-all-cmake-policy-CMP0104.patch
+    - patches/0007-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch
 
 build:
   skip: true  # [win]

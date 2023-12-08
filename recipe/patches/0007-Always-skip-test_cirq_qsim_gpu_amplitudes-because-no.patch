@@ -1,0 +1,27 @@
+From d6ba9820c5ec730a22b90fd5e4902d6b5b49cbfb Mon Sep 17 00:00:00 2001
+From: Bas Nijholt <bas@nijho.lt>
+Date: Thu, 7 Dec 2023 17:38:14 -0800
+Subject: [PATCH 7/7] Always skip test_cirq_qsim_gpu_amplitudes because no GPU
+ in CI
+
+---
+ qsimcirq_tests/qsimcirq_test.py | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/qsimcirq_tests/qsimcirq_test.py b/qsimcirq_tests/qsimcirq_test.py
+index 40d0c26..d315b5d 100644
+--- a/qsimcirq_tests/qsimcirq_test.py
++++ b/qsimcirq_tests/qsimcirq_test.py
+@@ -1309,8 +1309,7 @@ def test_qsim_gpu_unavailable():
+ 
+ 
+ def test_cirq_qsim_gpu_amplitudes():
+-    if qsimcirq.qsim_gpu is None:
+-        pytest.skip("GPU is not available for testing.")
++    pytest.skip("GPU is not available for testing.")
+     # Pick qubits.
+     a, b = [cirq.GridQubit(0, 0), cirq.GridQubit(0, 1)]
+ 
+-- 
+2.43.0
+
