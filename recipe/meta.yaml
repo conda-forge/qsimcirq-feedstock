@@ -16,6 +16,7 @@ source:
     - patches/0005-Allow-installing-for-Python-3.12.patch
     - patches/0006-Set-CUDA_ARCHITECTURES-all-cmake-policy-CMP0104.patch       # [cuda_compiler_version != "None"]
     - patches/0007-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch  # [cuda_compiler_version != "None"]
+    - patches/0008-Add-support-for-additional-CMake-arguments.patch
 
 build:
   skip: true  # [win]
