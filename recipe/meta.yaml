@@ -18,6 +18,7 @@ source:
     - patches/0007-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch  # [cuda_compiler_version != "None"]
     - patches/0008-Add-support-for-additional-CMake-arguments.patch
     - patches/0009-Use-CMAKE_SYSTEM_NAME-and-CMAKE_SYSTEM_PROCESSOR-for.patch
+    - patches/0010-Do-not-set-includes-on-Apple-arm64-in-basis.patch
 
 build:
   skip: true  # [win]
