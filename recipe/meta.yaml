@@ -16,13 +16,15 @@ source:
     - patches/0005-Allow-installing-for-Python-3.12.patch
     - patches/0006-Set-CUDA_ARCHITECTURES-all-cmake-policy-CMP0104.patch       # [cuda_compiler_version != "None"]
     - patches/0007-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch  # [cuda_compiler_version != "None"]
+    - patches/0008-Add-support-for-additional-CMake-arguments.patch
+    - patches/0009-Use-CMAKE_SYSTEM_NAME-and-CMAKE_SYSTEM_PROCESSOR-for.patch
 
 build:
   skip: true  # [win]
   # For some reason Python 3.12 fails to resolve and gives:
   # nothing provides _python_rc needed by python-3.12.0rc3-rc3_hab00c5b_1_cpython
   skip: true  # [cuda_compiler_version != "None" and py==312]
-  number: 4
+  number: 5
   string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
   string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                 # [cuda_compiler_version == "None"]
   script_env:
