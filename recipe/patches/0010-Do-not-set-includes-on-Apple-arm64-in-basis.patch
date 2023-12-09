@@ -1,0 +1,25 @@
+From 8a4ebbacc2af5814813a8c4be896342aa0c0c446 Mon Sep 17 00:00:00 2001
+From: Bas Nijholt <bas@nijho.lt>
+Date: Sat, 9 Dec 2023 01:20:59 -0800
+Subject: [PATCH] Do not set includes on Apple arm64 in basis
+
+---
+ pybind_interface/basic/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pybind_interface/basic/CMakeLists.txt b/pybind_interface/basic/CMakeLists.txt
+index ab9cd94..2e7beba 100644
+--- a/pybind_interface/basic/CMakeLists.txt
++++ b/pybind_interface/basic/CMakeLists.txt
+@@ -8,7 +8,7 @@ else()
+ endif()
+ 
+ 
+-if(APPLE)
++if(APPLE AND NOT APPLE_ARM)
+     set(CMAKE_CXX_STANDARD 14)
+     include_directories("/usr/local/include" "/usr/local/opt/llvm/include")
+     link_directories("/usr/local/lib" "/usr/local/opt/llvm/lib")
+-- 
+2.43.0
+
