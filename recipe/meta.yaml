@@ -90,6 +90,7 @@ test:
   requires:
     - pip
     - pytest
+    - pybind11
 
 about:
   home: https://quantumai.google/qsim
