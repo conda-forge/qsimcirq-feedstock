@@ -8,6 +8,8 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+cuda_compiler:
+- None
 cuda_compiler_version:
 - None
 cxx_compiler:
@@ -20,8 +22,6 @@ macos_machine:
 - x86_64-apple-darwin13.4.0
 numpy:
 - '1.22'
-openmpi:
-- '4'
 pin_run_as_build:
   python:
     min_pin: x.x
