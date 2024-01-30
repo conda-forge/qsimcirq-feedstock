@@ -18,11 +18,7 @@ source:
   url: https://github.com/quantumlib/qsim/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 81101fe9e6356e54125f703956e787aa366717c1e6e77aea794879b53c84ff60
   patches:
-    - patches/0001-Fix-no-instance-of-constructor-qsim-StateSpaceCUDA-F.patch  # [cuda_compiler != "None"]
-    - patches/0003-Set-pybind11_INCLUDE_DIRS-correctly-for-CUDA.patch          # [cuda_compiler != "None"]
-    - patches/0006-Set-CUDA_ARCHITECTURES-all-cmake-policy-CMP0104.patch       # [cuda_compiler != "None"]
     - patches/0007-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch  # [cuda_compiler != "None"]
-    - patches/0008-Add-support-for-additional-CMake-arguments.patch
     - patches/0009-Use-CMAKE_SYSTEM_NAME-and-CMAKE_SYSTEM_PROCESSOR-for.patch
     - patches/0010-Do-not-set-includes-on-Apple-arm64-in-basis.patch
 
