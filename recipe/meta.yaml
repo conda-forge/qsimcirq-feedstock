@@ -1,6 +1,6 @@
 {% set name = "qsimcirq" %}
-{% set version = "0.19.0" %}
-{% set build = 7 %}
+{% set version = "0.20.0" %}
+{% set build = 0 %}
 
 # Prioritize over CPU builds
 {% if cuda_compiler_version in (None, "None", True, False) %}
@@ -16,7 +16,7 @@ package:
 
 source:
   url: https://github.com/quantumlib/qsim/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 81101fe9e6356e54125f703956e787aa366717c1e6e77aea794879b53c84ff60
+  sha256: c69e4801d2ac3012e158fd8d70b8434caa71e894a23194c7e2d92bd1059ea1f9
   patches:
     - patches/0001-Fix-no-instance-of-constructor-qsim-StateSpaceCUDA-F.patch  # [cuda_compiler != "None"]
     - patches/0002-Remove-PUBLIC-from-target_link_libraries-with-OpenMP.patch  # [cuda_compiler != "None"]
@@ -36,7 +36,7 @@ build:
   skip: true  # [(cuda_compiler != "None" and py==312) or cuda_compiler_version not in ("None", "11.8", "12.0")]
   number: {{ build }}
   string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
-  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                 # [cuda_compiler_version == "None"]
+  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
   ignore_run_exports_from:
     - {{ compiler('cuda') }}  # [cuda_compiler != "None"]
   script_env:
