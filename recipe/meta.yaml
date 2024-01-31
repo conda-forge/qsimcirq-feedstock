@@ -1,6 +1,6 @@
 {% set name = "qsimcirq" %}
-{% set version = "0.19.0" %}
-{% set build = 7 %}
+{% set version = "0.20.0" %}
+{% set build = 0 %}
 
 # Prioritize over CPU builds
 {% if cuda_compiler_version in (None, "None", True, False) %}
