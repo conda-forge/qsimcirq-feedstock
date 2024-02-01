@@ -1,6 +1,6 @@
 {% set name = "qsimcirq" %}
-{% set version = "0.19.0" %}
-{% set build = 7 %}
+{% set version = "0.20.0" %}
+{% set build = 0 %}
 
 # Prioritize over CPU builds
 {% if cuda_compiler_version in (None, "None", True, False) %}
@@ -16,17 +16,9 @@ package:
 
 source:
   url: https://github.com/quantumlib/qsim/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 81101fe9e6356e54125f703956e787aa366717c1e6e77aea794879b53c84ff60
+  sha256: c69e4801d2ac3012e158fd8d70b8434caa71e894a23194c7e2d92bd1059ea1f9
   patches:
-    - patches/0001-Fix-no-instance-of-constructor-qsim-StateSpaceCUDA-F.patch  # [cuda_compiler != "None"]
-    - patches/0002-Remove-PUBLIC-from-target_link_libraries-with-OpenMP.patch  # [cuda_compiler != "None"]
-    - patches/0003-Set-pybind11_INCLUDE_DIRS-correctly-for-CUDA.patch          # [cuda_compiler != "None"]
-    - patches/0004-Set-PYTHON_INCLUDE_DIR-in-setup.py.patch
-    - patches/0005-Allow-installing-for-Python-3.12.patch
-    - patches/0006-Set-CUDA_ARCHITECTURES-all-cmake-policy-CMP0104.patch       # [cuda_compiler != "None"]
     - patches/0007-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch  # [cuda_compiler != "None"]
-    - patches/0008-Add-support-for-additional-CMake-arguments.patch
-    - patches/0009-Use-CMAKE_SYSTEM_NAME-and-CMAKE_SYSTEM_PROCESSOR-for.patch
     - patches/0010-Do-not-set-includes-on-Apple-arm64-in-basis.patch
 
 build:
@@ -63,6 +55,7 @@ requirements:
     - setuptools >=45
     - wheel
     - pip
+    - packaging
     - numpy
     - llvm-openmp  # [osx]
     - custatevec                                # [cuda_compiler != "None"]
