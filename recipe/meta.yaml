@@ -55,6 +55,7 @@ requirements:
     - setuptools >=45
     - wheel
     - pip
+    - packaging
     - numpy
     - llvm-openmp  # [osx]
     - custatevec                                # [cuda_compiler != "None"]
