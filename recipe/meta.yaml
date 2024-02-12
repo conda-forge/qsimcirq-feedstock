@@ -1,5 +1,5 @@
 {% set name = "qsimcirq" %}
-{% set version = "0.20.0" %}
+{% set version = "0.20.1" %}
 {% set build = 0 %}
 
 # Prioritize over CPU builds
@@ -16,7 +16,7 @@ package:
 
 source:
   url: https://github.com/quantumlib/qsim/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: c69e4801d2ac3012e158fd8d70b8434caa71e894a23194c7e2d92bd1059ea1f9
+  sha256: 8b7d5c8341fcf53b89fe7f433a119c03af6c49d4ce6f4cc02bc5fcf8c344680b
   patches:
     - patches/0007-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch  # [cuda_compiler != "None"]
     - patches/0010-Do-not-set-includes-on-Apple-arm64-in-basis.patch
@@ -28,7 +28,7 @@ build:
   skip: true  # [(cuda_compiler != "None" and py==312) or cuda_compiler_version not in ("None", "11.8", "12.0")]
   number: {{ build }}
   string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
-  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                 # [cuda_compiler_version == "None"]
+  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
   ignore_run_exports_from:
     - {{ compiler('cuda') }}  # [cuda_compiler != "None"]
   script_env:
