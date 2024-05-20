@@ -1,6 +1,6 @@
 {% set name = "qsimcirq" %}
 {% set version = "0.21.0" %}
-{% set build = 0 %}
+{% set build = 1 %}
 
 # Prioritize over CPU builds
 {% if cuda_compiler_version in (None, "None", True, False) %}
@@ -42,6 +42,7 @@ requirements:
     - numpy                                  # [build_platform != target_platform]
     - pybind11                               # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}                 # [cuda_compiler != "None"]
     - llvm-openmp  # [osx]
@@ -66,7 +67,6 @@ requirements:
     - absl-py
     - cirq-core
     - typing_extensions
-    - {{ pin_compatible('numpy', max_pin='x') }}
     - {{ pin_compatible('custatevec', max_pin='x') }}        # [cuda_compiler != "None"]
     - cudatoolkit                                            # [(cuda_compiler_version or "").startswith("11")]
     - {{ pin_compatible('libcublas', max_pin='x') }}         # [(cuda_compiler_version or "").startswith("12")]
