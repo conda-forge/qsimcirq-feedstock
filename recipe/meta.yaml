@@ -1,6 +1,6 @@
 {% set name = "qsimcirq" %}
 {% set version = "0.21.0" %}
-{% set build = 3 %}
+{% set build = 4 %}
 
 # Prioritize over CPU builds
 {% if cuda_compiler_version in (None, "None", True, False) %}
@@ -18,7 +18,7 @@ source:
   url: https://github.com/quantumlib/qsim/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 1f13137579a426e0ecc40e87d17c48d44fa84f5da6501ae5285e3206fb625ccd
   patches:
-    - patches/0007-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch  # [cuda_compiler != "None"]
+    - patches/0007-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch  # [cuda_compiler_version != "None"]
     - patches/0010-Do-not-set-includes-on-Apple-arm64-in-basis.patch
 
 build:
@@ -28,10 +28,10 @@ build:
   string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
   string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == "None"]
   ignore_run_exports_from:
-    - {{ compiler('cuda') }}  # [cuda_compiler != "None"]
+    - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
   script_env:
-    - CUQUANTUM_ROOT=$PREFIX  # [cuda_compiler != "None"]
-    - CUDAARCHS=70-real;75-real;80-real;86-real;89-real;90  # [cuda_compiler != "None"]
+    - CUQUANTUM_ROOT=$PREFIX  # [cuda_compiler_version != "None"]
+    - CUDAARCHS=70-real;75-real;80-real;86-real;89-real;90  # [cuda_compiler_version != "None"]
 
 requirements:
   build:
@@ -42,7 +42,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}                 # [cuda_compiler != "None"]
+    - {{ compiler('cuda') }}                 # [cuda_compiler_version != "None"]
     - llvm-openmp  # [osx]
     - libgomp      # [linux]
     - cmake >=3.27
@@ -57,7 +57,7 @@ requirements:
     - packaging
     - numpy
     - llvm-openmp  # [osx]
-    - custatevec                                # [cuda_compiler != "None"]
+    - custatevec                                # [cuda_compiler_version != "None"]
     - libcublas-dev                             # [(cuda_compiler_version or "").startswith("12")]
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
   run:
@@ -65,7 +65,7 @@ requirements:
     - absl-py
     - cirq-core
     - typing_extensions
-    - {{ pin_compatible('custatevec', max_pin='x') }}        # [cuda_compiler != "None"]
+    - {{ pin_compatible('custatevec', max_pin='x') }}        # [cuda_compiler_version != "None"]
     - cudatoolkit                                            # [(cuda_compiler_version or "").startswith("11")]
     - {{ pin_compatible('libcublas', max_pin='x') }}         # [(cuda_compiler_version or "").startswith("12")]
     - cuda-version >={{ cuda_major }}.2,<{{ cuda_major+1 }}  # [(cuda_compiler_version or "").startswith("11")]
