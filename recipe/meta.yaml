@@ -1,6 +1,6 @@
 {% set name = "qsimcirq" %}
-{% set version = "0.21.0" %}
-{% set build = 4 %}
+{% set version = "0.22.0" %}
+{% set build = 0 %}
 
 # Prioritize over CPU builds
 {% if cuda_compiler_version in (None, "None", True, False) %}
@@ -16,7 +16,7 @@ package:
 
 source:
   url: https://github.com/quantumlib/qsim/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 1f13137579a426e0ecc40e87d17c48d44fa84f5da6501ae5285e3206fb625ccd
+  sha256: a7817314a19c7d2d19dc5e32df318f7a784b9a6ee5a48670ed99054d85b614c4
   patches:
     - patches/0007-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch  # [cuda_compiler_version != "None"]
     - patches/0010-Do-not-set-includes-on-Apple-arm64-in-basis.patch
