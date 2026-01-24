@@ -18,8 +18,7 @@ source:
   url: https://github.com/quantumlib/qsim/archive/refs/tags/v{{ version }}.tar.gz
   sha256: a7817314a19c7d2d19dc5e32df318f7a784b9a6ee5a48670ed99054d85b614c4
   patches:
-    - patches/0007-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch  # [cuda_compiler_version != "None"]
-    - patches/0010-Do-not-set-includes-on-Apple-arm64-in-basis.patch
+    - patches/0001-Always-skip-test_cirq_qsim_gpu_amplitudes-because-no.patch  # [cuda_compiler_version != "None"]
 
 build:
   skip: true  # [win]
