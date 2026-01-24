@@ -4,7 +4,7 @@ set -ex
 # because $ file ~/micromamba/envs/test5/lib/python3.9/site-packages/qsimcirq/qsim_decide.cpython-39-darwin.so
 # qsim_decide.cpython-39-darwin.so: Mach-O 64-bit bundle x86_64
 # and: (trimmed error message)
-# ❯ python -c "import qsimcirq"
+# > python -c "import qsimcirq"
 # Traceback (most recent call last):
 # ImportError: dlopen(.../qsim_decide.cpython-312-darwin.so, 0x0002): 
 # tried: '.../qsim_decide.cpython-312-darwin.so' (mach-o file, but is an 
