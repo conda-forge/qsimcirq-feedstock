@@ -56,7 +56,7 @@ requirements:
     - numpy
     - llvm-openmp  # [osx]
     - custatevec                                # [cuda_compiler_version != "None"]
-    - libcublas-dev                             # [(cuda_compiler_version or "").startswith("12")]
+    - libcublas-dev                             # [cuda_compiler_version != "None"]
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
   run:
     - python
@@ -64,10 +64,8 @@ requirements:
     - cirq-core
     - typing_extensions
     - {{ pin_compatible('custatevec', max_pin='x') }}        # [cuda_compiler_version != "None"]
-    - cudatoolkit                                            # [(cuda_compiler_version or "").startswith("11")]
-    - {{ pin_compatible('libcublas', max_pin='x') }}         # [(cuda_compiler_version or "").startswith("12")]
-    - cuda-version >={{ cuda_major }}.2,<{{ cuda_major+1 }}  # [(cuda_compiler_version or "").startswith("11")]
-    - cuda-version >={{ cuda_major }}.0,<{{ cuda_major+1 }}  # [(cuda_compiler_version or "").startswith("12")]
+    - {{ pin_compatible('libcublas', max_pin='x') }}         # [cuda_compiler_version != "None"]
+    - cuda-version >={{ cuda_major }}.0,<{{ cuda_major+1 }}  # [cuda_compiler_version != "None"]
 
 test:
   imports:
