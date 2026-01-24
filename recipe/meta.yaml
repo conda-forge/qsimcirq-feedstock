@@ -57,6 +57,7 @@ requirements:
     - llvm-openmp  # [osx]
     - custatevec                                # [cuda_compiler_version != "None"]
     - libcublas-dev                             # [cuda_compiler_version != "None"]
+    - cuda-nvml-dev                             # [cuda_compiler_version != "None"]
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
   run:
     - python
