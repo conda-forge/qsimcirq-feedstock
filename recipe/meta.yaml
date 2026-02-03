@@ -63,6 +63,7 @@ requirements:
     - python
     - absl-py
     - cirq-core
+    - setuptools
     - typing_extensions
     - {{ pin_compatible('custatevec', max_pin='x') }}        # [cuda_compiler_version != "None"]
     - {{ pin_compatible('libcublas', max_pin='x') }}         # [cuda_compiler_version != "None"]
