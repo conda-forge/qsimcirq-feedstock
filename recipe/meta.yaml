@@ -68,9 +68,8 @@ requirements:
     - {{ pin_compatible('custatevec', max_pin='x') }}        # [cuda_compiler_version != "None"]
     - {{ pin_compatible('libcublas', max_pin='x') }}         # [cuda_compiler_version != "None"]
     - cuda-version >={{ cuda_major }}.0,<{{ cuda_major+1 }}  # [cuda_compiler_version != "None"]
-    # numpy 2.3 and newer leads to test failures
-    - numpy <2.3
-    - scipy <1.16
+    # newer cirq leads to test failures
+    - cirq-core <1.6
 
 test:
   requires:
