@@ -35,7 +35,7 @@ pin_run_as_build:
 pybind11_abi:
 - '11'
 python:
-- 3.12.* *_cpython
+- 3.14.* *_cp314
 target_platform:
 - osx-64
 zip_keys:
