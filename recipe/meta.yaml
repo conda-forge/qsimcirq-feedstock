@@ -29,7 +29,6 @@ build:
     - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
   script_env:
     - CUQUANTUM_ROOT=$PREFIX  # [cuda_compiler_version != "None"]
-    - CUDAARCHS=70-real;75-real;80-real;86-real;89-real;90  # [cuda_compiler_version != "None"]
 
 requirements:
   build:
